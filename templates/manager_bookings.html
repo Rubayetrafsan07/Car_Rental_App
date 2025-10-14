@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Bookings</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body>
+    <h1 class="cent">User Bookings</h1>
+            <div class="user-bookings-page">
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                <p><strong>{{ booking.user.username }}</strong> booked <strong>{{ booking.car.name }}</strong></p>
+                    <p>From: {{ booking.start_date }} To: {{ booking.end_date }}</p>
+                    <p>Total Price: ${{ booking.total_price }}</p>
+                <form method="post" action="{% url 'rental:cancel_booking_manager' booking.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Cancel Booking</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No bookings yet.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'rental:manager_dashboard' %}">Back to Dashboard</a></p>
+            </div>
+</body>
+</html>

@@ -1,0 +1,725 @@
+
+html, body {
+    height: 100%;
+    overflow-y: auto;
+}
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 3.6;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.cent{
+    text-align: Center;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+a:hover {
+    color: #0056b3;
+}
+
+button, input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 35px;
+
+}
+button:hover, input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+ul {
+    list-style: none;
+    margin-bottom:20px;
+}
+ul li {
+    margin-bottom: 10px;
+}
+
+/*======Car_list======*/
+body.car-list-page{
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+}
+.car-list-page ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+.car-list-page ul li{
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+.car-list-page ul li:hover {
+    transform: translateY(-5px);
+}
+
+.car-list-page ul li img {
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.car-list-page ul li h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.car-list-page ul li p.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.car-list-page ul li p.description {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+
+}
+.car-list-page ul li p.available {
+    color: deepskyblue;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+.car-list-page ul li p.unavailable {
+    color: red;
+    font-weight: bold;
+}
+
+.car-list-page ul li a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.car-list-page ul li a:hover {
+    background-color: #0056b3;
+}
+
+.car-list-page a.back-dashboard {
+    display: inline-block;
+    margin-top: 30px;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.car-list-page a.back-dashboard:hover {
+    color: #0056b3;
+}
+
+
+/* Booking form container */
+.booking-container {
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.booking-container form p {
+    margin-bottom: 15px;
+}
+
+.booking-container button {
+    width: 100%;
+}
+
+/* Booking confirmation container */
+.confirmation-container {
+    max-width: 350px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    line-height: 40px;
+}
+
+.confirmation-container h1 {
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.confirmation-container p {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.confirmation-container a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.confirmation-container a:hover {
+    color: #0056b3;
+}
+
+
+/* Login form container */
+.login-container {
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.login-container form p {
+    margin-bottom: 15px;
+}
+
+.login-container button {
+    width: 100%;
+}
+
+/* Center the page content */
+.change-password-page {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    text-align: left;
+    line-height: 25px;
+}
+
+
+.change-password-page h2 {
+    margin-bottom: 0;
+    color: #333;
+    text-align: center;
+}
+
+
+.change-password-form input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+
+.back-link {
+    margin-top: 15px;
+}
+
+.back-link a {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* User Registration Page */
+.register-page {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #e6f7ff;
+    color: #004085;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+
+.register-page h1 {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.register-page form p {
+    margin: 4px 0;
+}
+
+.register-page input[type="text"],
+.register-page input[type="email"],
+.register-page input[type="password"],
+.register-page select {
+    width: 100%;
+    padding: 5px 7px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.register-page button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.register-page button:hover {
+    background-color: #0056b3;
+}
+
+.register-page a {
+    color: #004085;
+    font-weight: bold;
+}
+
+.register-page a:hover {
+    color: #002752;
+}
+
+
+/* My Bookings Page */
+.my_bookings-page { max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f0f8ff;
+    color: #222;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.my_bookings-page h1 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #0056b3;
+}
+.my_bookings-page ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+.my_bookings-page li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+.my_bookings-page li:last-child {
+    border-bottom: none;
+}
+.my_bookings-page p,
+.my_bookings-page h3 {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+.my_bookings-page form {
+    margin-top: 5px;
+}
+.my_bookings-page button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.my_bookings-page button:hover {
+    background-color: #d93636;
+}
+
+
+
+/* Cancel Booking Page */
+.cancel-booking-page {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff3cd;
+    color: #856404;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.cancel-booking-page h1 {
+    margin-bottom: 15px;
+}
+
+.cancel-booking-page p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.cancel-booking-page button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-booking-page button:hover {
+    background-color: #d93636;
+}
+
+.cancel-booking-page a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #856404;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cancel-booking-page a:hover {
+    color: #333;
+}
+
+/* Manager Dashboard Page */
+.manager-dashboard {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #343a40;
+    color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.manager-dashboard h1 {
+    margin-bottom: 20px;
+    color: #ffc107;
+}
+
+.manager-dashboard ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.manager-dashboard ul li {
+    margin-bottom: 12px;
+}
+
+.manager-dashboard ul li a {
+    text-decoration: none;
+    color: #17a2b8;
+    font-weight: bold;
+}
+
+.manager-dashboard ul li a:hover {
+    color: #0d6efd;
+}
+
+.manager-dashboard p a {
+    color: #f8f9fa;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.manager-dashboard p a:hover {
+    color: #ffc107;
+}
+
+.manager-dashboard form {
+    margin-top: 15px;
+}
+
+/* User Bookings Page */
+.user-bookings-page {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #e9ecef;
+    color: #212529;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.user-bookings-page h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-bookings-page ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-bookings-page li {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-bookings-page li p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.user-bookings-page button {
+    margin-top: 5px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-bookings-page button:hover {
+    background-color: #d93636;
+}
+
+.user-bookings-page a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.user-bookings-page a:hover {
+    color: #0056b3;
+}
+
+
+.add-car-page {
+    max-width: 40%;
+    min-width: 250px;
+    margin: 40px auto;
+    padding: 60px 15px;
+    background-color: #fef9f0;
+    color: #5a3e1b;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+
+.add-car-page h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.add-car-page form p {
+    margin: 3px 0;
+}
+.add-car-page input[type="text"],
+.add-car-page input[type="number"],
+.add-car-page input[type="file"],
+.add-car-page textarea,
+.add-car-page select {
+    width: 100%;
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    margin-top: 2px;
+    margin-bottom: 4px;
+
+}
+
+.add-car-page input[type="checkbox"] {
+    position: sticky;
+    right: 20px;
+}
+
+.add-car-page button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.add-car-page button:hover {
+    background-color: #218838;
+}
+
+.add-car-page a {
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #5a3e1b;
+}
+
+.add-car-page a:hover {
+    color: #333;
+}
+
+
+/* ============================= */
+/* 📱 Responsive Design Section  */
+/* ============================= */
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    header, footer {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+        min-height: 100vh;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    form, .login-container, .register-page, .booking-container,
+    .confirmation-container, .my_bookings-page, .add-car-page,
+    .manager-dashboard, .cancel-booking-page, .user-bookings-page {
+        width: 50%;
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    button, input[type="submit"] {
+        width: 100%;
+        font-size: 1em;
+        padding: 12px;
+    }
+
+    .car-list-page ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car-list-page ul li {
+        width: 90%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    header h1, footer p {
+        font-size: 1em;
+    }
+
+    a, button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .container {
+        padding: 0.8rem;
+    }
+}
+
+
+
+
+
+

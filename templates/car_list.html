@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Cars</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+
+    <body class = "car-list-page">
+    <h1>Available Cars</h1>
+
+    <h2>Search Cars</h2>
+    <input type="text" id="searchBox" placeholder="Search Car..." autocomplete="off">
+    <ul id="searchResults"></ul>
+
+     <ul>
+        {% for car in cars %}
+            <li>
+                <h3>{{ car.name }}</h3>
+                  <p class="price"> ${{ car.price_per_day }} per day </p>
+                {% if car.image %}
+                    <img src="{{ car.image.url }}" alt="{{ car.name }}" width="200">
+                {% endif %}
+                  <p class="description">{{ car.description }}</p>
+                {% if car.is_available %}
+                        <p class="available">Available</p>
+                     <p><a href="{% url 'rental:book_car' car.id %}">Book Now</a></p>
+                    {% else %}
+                     <p class="unavailable">Currently Unavailable</p>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No cars available.</li>
+        {% endfor %}
+     </ul>
+         <p><a href="{% url 'rental:dashboard' %}">Back to Dashboard</a></p>
+
+     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBox = document.getElementById('searchBox');
+    const resultsList = document.getElementById('searchResults');
+
+
+    searchBox.addEventListener('input', function() {
+        const query = this.value.trim();
+
+
+        if (query.length === 0) {
+            resultsList.innerHTML = '';                // clear results if search is empty
+            return;
+        }
+
+        fetch(`/rental/api/search/?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                resultsList.innerHTML = '';
+
+                data.results.forEach(car => {
+                    const li = document.createElement('li');
+                    li.textContent = `${car.name} - $${car.price_per_day}/day`;
+                    li.style.cursor = 'pointer';
+
+                    li.addEventListener('click', function() {
+                    window.location.href = `/rental/car/${car.id}/`;
+                    });
+                    resultsList.appendChild(li);
+                });
+
+            })
+            .catch(error => console.error('Error:', error));
+    });
+});
+</script>
+</body>
+</html>

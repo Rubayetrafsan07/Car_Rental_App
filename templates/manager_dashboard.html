@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body>
+     <div class="manager-dashboard">
+            <h1>Manager Dashboard!</h1>
+
+         <ul>
+             <li><a href="{% url 'rental:car_list' %}">View Available Cars</a></li>
+            <li><a href="{% url 'rental:add_car' %}">Add New Car</a></li>
+             <li><a href="{% url 'rental:manager_bookings' %}">View User Bookings</a></li>
+        </ul>
+
+         <p><a href="{% url 'rental:dashboard' %}">Back to Dashboard</a></p>
+
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+             {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+     </div>
+</body>
+</html>
+

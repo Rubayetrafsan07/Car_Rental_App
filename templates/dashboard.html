@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Rental App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body>
+    <h1 class="cent">Welcome {{ user.username }}!</h1>
+
+    <p class="cent">Your groups:
+        {% for group in user.groups.all %}
+            {{ group.name }}
+        {% empty %}
+            No group
+        {% endfor %}
+    </p>
+
+    <ul class="cent">
+        <li><a href="{% url 'rental:car_list' %}">View Available Cars</a></li>
+        {% if is_manager %}
+            <li><a href="{% url 'rental:manager_dashboard' %}">Manager Dashboard</a></li>
+        {% endif %}
+        <li><a href="{% url 'rental:my_bookings' %}">My Bookings</a></li>
+        <li><a href="{% url 'rental:change_password' %}">Change Password</a></li>
+
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </ul>
+</body>
+</html>

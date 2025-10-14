@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Car</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body>
+    <h1>Book {{ car.name }}</h1>
+
+    <div class="booking-container">
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label>Start Date:</label><br>
+                <input type="date" name="start_date" required>
+            </p>
+            <p>
+                <label>End Date:</label><br>
+                <input type="date" name="end_date" required>
+            </p>
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </div>
+
+    <p><a href="{% url 'rental:car_list' %}">Back to Car List</a></p>
+</body>
+</html>

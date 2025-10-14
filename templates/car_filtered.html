@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ car.name }}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+
+<body class="car-list-page">
+
+<h1>{{ car.name }}</h1>
+
+<ul>
+    <li>
+        <p class="price">$ {{ car.price_per_day }} per day</p>
+
+        {% if car.image %}
+            <img src="{{ car.image.url }}" alt="{{ car.name }}" width="200">
+        {% endif %}
+
+        <p class="description">{{ car.description }}</p>
+
+        {% if car.is_available %}
+            <p class="available">Available</p>
+            <p><a href="{% url 'rental:book_car' car.id %}">Book Now</a></p>
+        {% else %}
+            <p class="unavailable">Currently Unavailable</p>
+        {% endif %}
+    </li>
+</ul>
+
+<p><a href="{% url 'rental:car_list' %}">Back to Car List</a></p>
+
+</body>
+</html>
+

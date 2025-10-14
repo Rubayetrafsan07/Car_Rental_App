@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Car Rental{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body class="app">
+    <header class="header">
+        <h1 class="logo">
+            <a href="{% url 'home' %}">Car Rental</a>
+        </h1>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> Car Rental</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>Cancel Booking</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body>
+    <div class="cancel-booking-page">
+    <h1>Cancel Booking</h1>
+    <p>Are you sure you want to cancel your booking for <strong>{{ booking.car.name }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Cancel Booking</button>
+    </form>
+
+    <p><a href="{% url 'rental:my_bookings' %}">Back to My Bookings</a></p>
+    </div>
+</body>
+</html>

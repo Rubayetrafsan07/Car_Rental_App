@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+</head>
+<body>
+ <div class="register-page">
+    <h1>Register for Car Rental</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            {{ form.username.label_tag }}<br>
+            {{ form.username }}
+        </p>
+        <p>
+            {{ form.email.label_tag }}<br>
+            {{ form.email }}
+        </p>
+        <p>
+            {{ form.password1.label_tag }}<br>
+            {{ form.password1 }}
+        </p>
+        <p>
+            {{ form.password2.label_tag }}<br>
+            {{ form.password2 }}
+        </p>
+        <p>
+            {{ form.role.label_tag }}<br>
+            {{ form.role }}
+        </p>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+ </div>
+</body>
+</html>
