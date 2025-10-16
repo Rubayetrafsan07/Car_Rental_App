@@ -644,24 +644,28 @@ body.car-list-page{
 }
 
 
-/* ============================= */
-/* 📱 Responsive Design Section  */
-/* ============================= */
 
-@media (max-width: 768px) {
+/* Responsive Design Section  */
+
+@media (max-width: 600px) {
+
     body {
         font-size: 14px;
         padding: 10px;
+        margin: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
-    header, footer {
+    header {
         text-align: center;
         padding: 1rem;
     }
 
     .container {
         padding: 1rem;
-        min-height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     h1, h2, h3 {
@@ -669,54 +673,43 @@ body.car-list-page{
         text-align: center;
     }
 
-    form, .login-container, .register-page, .booking-container,
-    .confirmation-container, .my_bookings-page, .add-car-page,
-    .manager-dashboard, .cancel-booking-page, .user-bookings-page {
-        width: 50%;
+    form, div, section {
+        width: 90%;
         margin: 10px auto;
-        padding: 15px;
+        box-sizing: border-box;
     }
 
     button, input[type="submit"] {
         width: 100%;
         font-size: 1em;
-        padding: 12px;
-    }
-
-    .car-list-page ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .car-list-page ul li {
-        width: 90%;
+        padding: 10px;
     }
 
     img {
         max-width: 100%;
         height: auto;
+        display: block;
+        margin: 0 auto;
     }
 }
 
+/* For very small phones */
 @media (max-width: 480px) {
     body {
         font-size: 13px;
-        line-height: 1.5;
     }
 
-    header h1, footer p {
+    h1, h2, h3 {
         font-size: 1em;
     }
 
-    a, button {
+    button, input[type="submit"] {
         font-size: 0.9em;
-        padding: 10px;
-    }
-
-    .container {
-        padding: 0.8rem;
+        padding: 8px;
     }
 }
+
+
 
 
 

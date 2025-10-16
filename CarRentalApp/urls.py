@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rental/', include('rental.urls')),
 
-
     path('register/', rental_views.register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
 

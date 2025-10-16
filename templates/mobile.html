@@ -7,7 +7,7 @@
     <title>{% block title %}Car Rental{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'rental/style.css' %}">
 </head>
-<body class="app">
+<body >
     <header class="header">
         <h1 class="logo">
             <a href="{% url 'home' %}">Car Rental</a>
@@ -19,8 +19,5 @@
         {% endblock %}
     </main>
 
-    <footer class="footer">
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Car Rental</p>
-    </footer>
 </body>
 </html>
