@@ -10,7 +10,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
    # path('manager/',views.manager_dashboard,name='manager_dashboard'),
     path('cars/',views.car_list,name='car_list'),
-    path('car/<int:car_id>/', filtered_car, name='filtered_car'),
+    path('car/<int:car_id>/',views.filtered_car, name='filtered_car'),
 
     path('book/<int:car_id>/', views.book_car, name='book_car'),
     path('my_bookings/',views.my_bookings,name='my_bookings'),

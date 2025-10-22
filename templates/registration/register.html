@@ -18,15 +18,19 @@
         </p>
         <p>
             {{ form.email.label_tag }}<br>
-            {{ form.email }}
+            <input type="email" name="email" required placeholder="Enter a valid email (e.g. user@mail.com)">
+        </p>
         </p>
         <p>
             {{ form.password1.label_tag }}<br>
-            {{ form.password1 }}
+            <input type="password" name="password1" required
+                   pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}"
+                   title="Password must be at least 5 characters long and contain both letters and numbers"
+                   placeholder="Min 5 chars, include letters and numbers">
         </p>
         <p>
             {{ form.password2.label_tag }}<br>
-            {{ form.password2 }}
+            <input type="password" name="password2" required placeholder="Confirm password">
         </p>
         <p>
             {{ form.role.label_tag }}<br>
