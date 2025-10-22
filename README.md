@@ -112,6 +112,9 @@ https://docs.djangoproject.com/en/4.2/topics/testing/overview/
 ```bash
 https://stackoverflow.com/questions/15073227/django-unit-test-simple-example
   ```
+```bash
+https://docs.djangoproject.com/en/4.2/topics/testing/tools/#jsonresponse
+```
 ## How to Run
 
 **1. Clone the repository:**
