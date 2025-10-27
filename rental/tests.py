@@ -192,3 +192,18 @@ class ManagerDashboardViewTest(TestCase):
         self.client.login(username='normaluser', password='12345')
         response = self.client.get(reverse('rental:manager_dashboard'))
         self.assertEqual(response.status_code, 302)
+
+
+class SignUpFormUsernameDigitsTest(TestCase):
+    def test_username_with_digits_is_valid(self):
+        from .forms import SignUpForm
+
+        form = SignUpForm(data={
+            'username': 'user123',
+            'email': 'user@example.com',
+            'password1': 'StrongPassword123!',
+            'password2': 'StrongPassword123!',
+            'role': 'NormalUser',
+        })
+
+        self.assertTrue(form.is_valid(), msg=form.errors.as_json())
