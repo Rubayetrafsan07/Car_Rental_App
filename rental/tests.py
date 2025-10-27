@@ -35,20 +35,20 @@ class BookingModelTest(TestCase):
             price_per_day=50.00,
         )
 
-        def test_create_booking(self):
-
-            booking = Booking.objects.create(
-                user=self.user,
-                car=self.car,
-                start_date=date(2025,10,20),
-                end_date=date(2025,11,25),
-                total_price=250.00,
-            )
-            self.assertEqual(booking.user.username,'testuser')
-            self.assertEqual(booking.car.name, 'Toyota Corolla')
-            self.assertEqual(booking.start_date,date(2025,10,20))
-            self.assertEqual(booking.end_date,date(2025,11,25))
-            self.assertEqual(booking.total_price,250.00)
+    def test_create_booking(self):
+        booking = Booking.objects.create(
+            user=self.user,
+            car=self.car,
+            start_date=date(2025,10,20),
+            end_date=date(2025,11,25),
+            total_price=250.00,
+        )
+        self.assertEqual(booking.user.username,'testuser')
+        self.assertEqual(booking.car.name, 'Toyota Corolla')
+        self.assertEqual(booking.start_date,date(2025,10,20))
+        self.assertEqual(booking.end_date,date(2025,11,25))
+        # 50 per day for 37 days (inclusive) = 1850
+        self.assertEqual(float(booking.total_price), 1850.00)
 
 
 
@@ -207,3 +207,86 @@ class SignUpFormUsernameDigitsTest(TestCase):
         })
 
         self.assertTrue(form.is_valid(), msg=form.errors.as_json())
+
+
+class RegistrationViewTests(TestCase):
+    def setUp(self):
+        # Ensure groups used by the app exist
+        Group.objects.get_or_create(name='NormalUser')
+        Group.objects.get_or_create(name='Manager')
+
+    def test_register_get_renders_form(self):
+        url = reverse('register')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/register.html')
+
+    def test_register_post_creates_user_with_digits_and_redirects(self):
+        url = reverse('register')
+        payload = {
+            'username': 'john123',
+            'email': 'john@example.com',
+            'password1': 'StrongPassword123!',
+            'password2': 'StrongPassword123!',
+            'role': 'NormalUser',
+        }
+        response = self.client.post(url, payload)
+        # Should redirect to login on success
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.headers.get('Location'), reverse('login'))
+
+        # User created
+        self.assertTrue(User.objects.filter(username='john123').exists())
+        user = User.objects.get(username='john123')
+        # Group assignment
+        self.assertTrue(user.groups.filter(name='NormalUser').exists())
+
+    def test_register_invalid_username_rejected(self):
+        url = reverse('register')
+        payload = {
+            'username': 'bad name!',  # space and ! are not allowed by our validator
+            'email': 'bad@example.com',
+            'password1': 'StrongPassword123!',
+            'password2': 'StrongPassword123!',
+            'role': 'NormalUser',
+        }
+        response = self.client.post(url, payload)
+        # Remains on page with errors
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'This value may contain only', status_code=200)
+        self.assertFalse(User.objects.filter(username='bad name!').exists())
+
+
+class LoginViewTests(TestCase):
+    def setUp(self):
+        self.password = 'StrongPassword123!'
+        self.user = User.objects.create_user(username='loginuser1', email='l@example.com', password=self.password)
+
+    def test_login_success_redirects_to_dashboard(self):
+        url = reverse('login')
+        response = self.client.post(url, {
+            'username': 'loginuser1',
+            'password': self.password,
+        })
+        # Should redirect to LOGIN_REDIRECT_URL
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.headers.get('Location').endswith('/rental/dashboard'))
+
+    def test_login_invalid_credentials_show_errors(self):
+        url = reverse('login')
+        response = self.client.post(url, {
+            'username': 'loginuser1',
+            'password': 'wrongpass',
+        })
+        # Re-render login page with 200 and form errors
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Please enter a correct username and password', status_code=200)
+
+    def test_logout_redirects_to_login(self):
+        # First, log in
+        self.client.login(username='loginuser1', password=self.password)
+        # Then log out
+        url = reverse('logout')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.headers.get('Location'), reverse('login'))
