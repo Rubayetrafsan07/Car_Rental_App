@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
+from django.core.exceptions import ValidationError
 
 class Car(models.Model):
     name = models.CharField(max_length=100)
@@ -23,9 +24,14 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
 
-        if self.start_date and self.end_date and self.start_date <= self.end_date:
+        if self.start_date and self.end_date:
+            if self.start_date > self.end_date:
+                raise ValidationError("End date cannot be before start date.")
+
+
             days = (self.end_date - self.start_date).days + 1
             self.total_price = days * self.car.price_per_day
+
         super().save(*args, **kwargs)
 
     def __str__(self):

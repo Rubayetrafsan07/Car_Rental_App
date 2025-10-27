@@ -7,40 +7,73 @@
     <link rel="stylesheet" href="{% static 'rental/style.css' %}">
 </head>
 <body>
- <div class="register-page">
+<div class="register-page">
     <h1>Register for Car Rental</h1>
 
     <form method="post">
         {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
         <p>
             {{ form.username.label_tag }}<br>
             {{ form.username }}
+            {% if form.username.help_text %}
+                <small style="color: gray;">{{ form.username.help_text }}</small>
+            {% endif %}
+            {% for error in form.username.errors %}
+                <small style="color: red;">{{ error }}</small>
+            {% endfor %}
         </p>
+
         <p>
             {{ form.email.label_tag }}<br>
-            <input type="email" name="email" required placeholder="Enter a valid email (e.g. user@mail.com)">
+            {{ form.email }}
+            {% if form.email.help_text %}
+                <small style="color: gray;">{{ form.email.help_text }}</small>
+            {% endif %}
+            {% for error in form.email.errors %}
+                <small style="color: red;">{{ error }}</small>
+            {% endfor %}
         </p>
-        </p>
+
         <p>
             {{ form.password1.label_tag }}<br>
-            <input type="password" name="password1" required
-                   pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}"
-                   title="Password must be at least 5 characters long and contain both letters and numbers"
-                   placeholder="Min 5 chars, include letters and numbers">
+            {{ form.password1 }}
+            {% if form.password1.help_text %}
+                <small style="color: gray;">{{ form.password1.help_text }}</small>
+            {% endif %}
+            {% for error in form.password1.errors %}
+                <small style="color: red;">{{ error }}</small>
+            {% endfor %}
         </p>
+
         <p>
             {{ form.password2.label_tag }}<br>
-            <input type="password" name="password2" required placeholder="Confirm password">
+            {{ form.password2 }}
+            {% if form.password2.help_text %}
+                <small style="color: gray;">{{ form.password2.help_text }}</small>
+            {% endif %}
+            {% for error in form.password2.errors %}
+                <small style="color: red;">{{ error }}</small>
+            {% endfor %}
         </p>
+
+        {% if form.role %}
         <p>
             {{ form.role.label_tag }}<br>
             {{ form.role }}
+            {% for error in form.role.errors %}
+                <small style="color: red;">{{ error }}</small>
+            {% endfor %}
         </p>
+        {% endif %}
 
         <button type="submit">Register</button>
     </form>
 
     <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
- </div>
+</div>
 </body>
 </html>
+

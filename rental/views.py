@@ -76,6 +76,13 @@ def book_car(request, car_id):
         start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
         end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
 
+        if start_date > end_date:
+
+            return render(request, "book_car.html", {
+                "car": car,
+                "error": "End date cannot be before start date."
+            })
+
         days = (end_date - start_date).days + 1
         total_price = days * car.price_per_day
 
